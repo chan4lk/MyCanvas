@@ -51,7 +51,7 @@ export default class MyCanvas implements ICanvas {
         this.context.fillText(header.value, x, y);
     }
 
-    public toString(): string {
+    public ToString(): string {
         return `The canvas width :${this.container.Width}, The canvas height :${this.container.Height}`;
     }
 }
