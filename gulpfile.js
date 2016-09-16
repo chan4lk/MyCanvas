@@ -58,7 +58,7 @@ gulp.task("min", ["min:js", "min:css"]);
 
 gulp.task('watch', ['min:js'], function () {
 	gulp.watch('src/**/*.ts', ['min:js']);
-	gulp.watch('css/**/*.css', ['min:ccs']);
+	gulp.watch('css/**/*.css', ['min:css']);
 });
 
 gulp.task('serve', function () {
@@ -72,6 +72,7 @@ gulp.task('serve', function () {
 
     gulp.watch("*.html").on("change", reload);
     gulp.watch("dist/**/*.js").on("change", reload);
+    gulp.watch("dist/**/*.css").on("change", reload);
 });
 
 gulp.task('build', ['min']);

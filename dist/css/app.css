@@ -12117,6 +12117,10 @@
     background: #fff;
 }
 
+.cr-commands{
+    padding-top: 10px;
+}
+
 canvas{
     border: 1px solid;
 }
