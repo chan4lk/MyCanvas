@@ -2,6 +2,17 @@
 import Container from './Container';
 
 export default class PositionUtils {
+
+    /**
+     * Get the X value based on the Position.
+     * 
+     * @static
+     * @param {Position} pos
+     * @param {Container} container
+     * @returns
+     * 
+     * @memberOf PositionUtils
+     */
     public static getX(pos: Position, container: Container) {
         switch (pos) {
             case Position.TOP_LEFT:
@@ -19,6 +30,16 @@ export default class PositionUtils {
         }
     }
 
+    /**
+     * Get the Y value based on the position.
+     * 
+     * @static
+     * @param {Position} pos
+     * @param {Container} container
+     * @returns
+     * 
+     * @memberOf PositionUtils
+     */
     public static getY(pos: Position, container: Container) {
         switch (pos) {
             case Position.TOP_LEFT:

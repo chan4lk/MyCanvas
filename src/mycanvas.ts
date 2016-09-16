@@ -3,7 +3,7 @@ import TextElement from './TextElement';
 import PositionUtils from './PositionUtils';
 
 interface ICanvas {
-    toString(): string;
+    ToString(): string;
     Draw(surface: HTMLCanvasElement): void;
 }
 
@@ -13,6 +13,14 @@ export default class MyCanvas implements ICanvas {
 
     private container: Container;
     private context: CanvasRenderingContext2D;
+
+    /**
+     * Creates an instance of MyCanvas.
+     * 
+     * @param {HTMLCanvasElement} surface
+     * 
+     * @memberOf MyCanvas
+     */
     constructor(surface: HTMLCanvasElement) {
         if (surface) {
             this.context = surface.getContext('2d');           

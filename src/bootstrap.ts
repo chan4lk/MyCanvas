@@ -11,6 +11,3 @@ document.getElementById('add-header').addEventListener('click', (e)=>{
     let header = new TextElement('Header', '20px Georgia', '#eee', Position.TOP_LEFT);
     canvas.AddHeader(header);
 });
-
-
-

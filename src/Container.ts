@@ -1,4 +1,11 @@
-﻿export default class Container {
+﻿
+/**
+ * Container for the canvas.
+ * 
+ * @export
+ * @class Container
+ */
+export default class Container {
     private width: number;
     private height: number;
 

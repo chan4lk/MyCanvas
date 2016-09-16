@@ -1,4 +1,10 @@
-﻿export enum Position {
+﻿/**
+ * The Position.
+ * 
+ * @export
+ * @enum {number}
+ */
+export enum Position {
     TOP_LEFT = 0,
     TOP_CENTER = 1,
     TOP_RIGHT = 2,
