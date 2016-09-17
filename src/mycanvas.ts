@@ -99,6 +99,8 @@ export default class MyCanvas implements ICanvas {
         let lineHeight = 25;
         x = (this.container.Width - maxWidth) / 2;
         
+        this.context.font = text.font;
+        this.context.fillStyle = text.color;
         //this.context.textBaseline = 'Top';
 
         for (let n = 0; n < words.length; n++) {

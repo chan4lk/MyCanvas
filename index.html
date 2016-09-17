@@ -2,9 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>My Canvas</title>
+    <script src="dist/js/vendor.bundle.js"></script>
     <link rel="stylesheet" href="dist/css/app.css" />
+
+    <!--During development turn off caching-->
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+  <meta http-equiv="pragma" content="no-cache" />
 </head>
 
 <body>
@@ -133,9 +142,12 @@
                 Browser does not suport canvas element.
             </canvas>
         </div>
+        <div class="ms-Grid-row" id="dialog-preview">
+
+        </div>
     </div>
 
-    <script src="dist/js/vendor.bundle.js"></script>
+    
     <script src="dist/js/app.bundle.js"></script>
 </body>
 
