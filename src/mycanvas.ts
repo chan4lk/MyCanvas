@@ -34,13 +34,7 @@ export default class MyCanvas implements ICanvas {
         }
 
         this.surface = surface;
-
-        let width = surface.width;
-        let height = surface.height;
-
-        this.container = new Container();
-        this.container.Height = height;
-        this.container.Width = width;
+        this.container = new Container();       
     }
 
     public Draw(imagePath: string): void {
@@ -72,6 +66,8 @@ export default class MyCanvas implements ICanvas {
         let maxWidth = this.container.Width - 20 - x;
         let lineHeight = 25;
         x = (this.container.Width - maxWidth) / 2;
+        
+        this.context.textBaseline = 'Top';
 
         for (let n = 0; n < words.length; n++) {
             let testLine = line + words[n] + ' ';
