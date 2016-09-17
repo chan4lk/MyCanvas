@@ -12,12 +12,16 @@ export default class Container {
     public set Width(width: number) {
         if (window.innerWidth >= width) {
             this.width = width;
+        }else{
+            this.width = window.innerWidth;
         }
     }
 
     public set Height(height: number) {
         if (window.innerHeight >= height) {
             this.height = height;
+        }else{
+            this.height = window.innerHeight;
         }
     }
 

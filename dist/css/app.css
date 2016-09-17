@@ -12119,8 +12119,15 @@
 
 .cr-commands{
     padding-top: 10px;
+     margin-bottom: 0px;
 }
 
 canvas{
     border: 1px solid;
+}
+
+@media (min-width: 480px){
+    .cr-commands{
+        margin-bottom: 30px;
+    }
 }

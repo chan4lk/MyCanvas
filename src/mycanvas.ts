@@ -15,6 +15,7 @@ export default class MyCanvas implements ICanvas {
     private container: Container;
     private context: CanvasRenderingContext2D;
     private surface:HTMLCanvasElement;
+
     /**
      * Creates an instance of MyCanvas.
      * 
@@ -37,6 +38,13 @@ export default class MyCanvas implements ICanvas {
         this.container = new Container();       
     }
 
+    /**
+     * Draw the base image.
+     * 
+     * @param {string} imagePath
+     * 
+     * @memberOf MyCanvas
+     */
     public Draw(imagePath: string): void {
         let imageElement = new Image();
         imageElement.onload = () => {
@@ -47,17 +55,41 @@ export default class MyCanvas implements ICanvas {
 
     }
 
+    /**
+     * Add Text elements to canvas.
+     * 
+     * @param {TextElement} text
+     * 
+     * @memberOf MyCanvas
+     */
     public AddText(text: TextElement): void {
         this.WrapText(text);
     }
 
+    /**
+     * Resize the canvas.
+     * 
+     * @private
+     * @param {number} width
+     * @param {number} height
+     * 
+     * @memberOf MyCanvas
+     */
     private ResizeCanvas(width: number, height: number) {
         this.container.Width = width;
         this.container.Height = height;
-        this.surface.width = width;
-        this.surface.height = height;
+        this.surface.width = this.container.Width;
+        this.surface.height = this.container.Height;
     }
 
+    /**
+     * Wrap the text to canvas width.
+     * 
+     * @private
+     * @param {TextElement} text
+     * 
+     * @memberOf MyCanvas
+     */
     private WrapText(text: TextElement) {
         let words = text.value.split(' ');
         let line = '';
@@ -67,7 +99,7 @@ export default class MyCanvas implements ICanvas {
         let lineHeight = 25;
         x = (this.container.Width - maxWidth) / 2;
         
-        this.context.textBaseline = 'Top';
+        //this.context.textBaseline = 'Top';
 
         for (let n = 0; n < words.length; n++) {
             let testLine = line + words[n] + ' ';
@@ -85,6 +117,13 @@ export default class MyCanvas implements ICanvas {
         this.context.fillText(line, x, y);
     }
 
+    /**
+     * Canvas toString.
+     * 
+     * @returns {string}
+     * 
+     * @memberOf MyCanvas
+     */
     public ToString(): string {
         return `The canvas width :${this.container.Width}, The canvas height :${this.container.Height}`;
     }
