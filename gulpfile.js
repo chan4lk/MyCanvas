@@ -1,15 +1,14 @@
 /// <binding BeforeBuild='min' Clean='clean' />
 "use strict";
 
-var gulp = require("gulp"),
-    rimraf = require("rimraf"),
-    concat = require("gulp-concat"),
-    cssmin = require("gulp-cssmin"),
-    uglify = require("gulp-uglify");
-var webpack = require('gulp-webpack');
+var gulp = require("gulp");
+var rimraf = require("rimraf");
+var $ = require("gulp-load-plugins")({
+  pattern: ['gulp-*', 'gulp.*'],
+  replaceString: /\bgulp[\-.]/
+});
 var browserSync = require('browser-sync').create();
 var reload      = browserSync.reload;
-var rename = require("gulp-rename");
 
 var paths = {
     webroot: "./"
@@ -40,16 +39,16 @@ gulp.task("copy:css", function () {
 
 gulp.task("min:css", ["clean:css"], function () {
     return gulp.src([paths.css + "*.css"])
-        .pipe(concat(paths.cssDest))
+        .pipe($.concat(paths.cssDest))
         .pipe(gulp.dest('./'))
-        .pipe(cssmin())
-        .pipe(rename(paths.cssMin))
+        .pipe($.cssmin())
+        .pipe($.rename({suffix: '.min'}))
         .pipe(gulp.dest('./'));
 });
 
 gulp.task('min:js', ['clean:js'], function () {
     return gulp.src(paths.src)
-		.pipe(webpack(require('./webpack.config.js')))
+		.pipe($.webpack(require('./webpack.config.js')))
 		.pipe(gulp.dest('./'));
 
 });

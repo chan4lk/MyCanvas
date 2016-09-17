@@ -23,12 +23,17 @@ module.exports = {
             { test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/ }
         ]
     },
-    plugins: [
+    plugins: [        
         new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            'window.jquery': 'jquery'
         }),
-        new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */paths.bundleDest + "[name].bundle.js"),
+        new webpack.optimize.CommonsChunkPlugin(
+            /* chunkName= */"vendor",
+             /* filename= */paths.bundleDest + "[name].bundle.js"
+        ),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false

@@ -4,7 +4,8 @@ import PositionUtils from './PositionUtils';
 
 interface ICanvas {
     ToString(): string;
-    Draw(surface: HTMLCanvasElement): void;
+    Draw(imagePath: string): void;
+    AddText(text: TextElement): void;
 }
 
 export default class MyCanvas implements ICanvas {
@@ -13,7 +14,7 @@ export default class MyCanvas implements ICanvas {
 
     private container: Container;
     private context: CanvasRenderingContext2D;
-
+    private surface:HTMLCanvasElement;
     /**
      * Creates an instance of MyCanvas.
      * 
@@ -23,7 +24,7 @@ export default class MyCanvas implements ICanvas {
      */
     constructor(surface: HTMLCanvasElement) {
         if (surface) {
-            this.context = surface.getContext('2d');           
+            this.context = surface.getContext('2d');
         } else {
             surface = document.createElement('Canvas') as HTMLCanvasElement;
             surface.clientWidth = this.defaultWidth;
@@ -32,23 +33,60 @@ export default class MyCanvas implements ICanvas {
             this.context = surface.getContext('2d');
         }
 
+        this.surface = surface;
+
         let width = surface.width;
         let height = surface.height;
 
         this.container = new Container();
         this.container.Height = height;
-        this.container.Width  = width;
+        this.container.Width = width;
     }
 
-    public Draw(): void {
-        
+    public Draw(imagePath: string): void {
+        let imageElement = new Image();
+        imageElement.onload = () => {
+            this.ResizeCanvas(imageElement.width, imageElement.height);
+            this.context.drawImage(imageElement, 0, 0);
+        };
+        imageElement.src = imagePath;
+
     }
 
-    public AddHeader(header: TextElement): void {
-        let x = PositionUtils.getX(header.position, this.container);
-        let y = PositionUtils.getY(header.position, this.container);
-        this.context.font = header.font;
-        this.context.fillText(header.value, x, y);
+    public AddText(text: TextElement): void {
+        this.WrapText(text);
+    }
+
+    private ResizeCanvas(width: number, height: number) {
+        this.container.Width = width;
+        this.container.Height = height;
+        this.surface.width = width;
+        this.surface.height = height;
+    }
+
+    private WrapText(text: TextElement) {
+        let words = text.value.split(' ');
+        let line = '';
+        let x = PositionUtils.getX(text.position, this.container);
+        let y = PositionUtils.getY(text.position, this.container);
+        let maxWidth = this.container.Width - 20 - x;
+        let lineHeight = 25;
+        x = (this.container.Width - maxWidth) / 2;
+
+        for (let n = 0; n < words.length; n++) {
+            let testLine = line + words[n] + ' ';
+            let metrics = this.context.measureText(testLine);
+            let testWidth = metrics.width;
+            if (testWidth > maxWidth && n > 0) {
+                this.context.fillText(line, x, y);
+                line = words[n] + ' ';
+                y += lineHeight;
+            }
+            else {
+                line = testLine;
+            }
+        }
+        this.context.fillText(line, x, y);
     }
 
     public ToString(): string {
