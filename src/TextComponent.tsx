@@ -6,7 +6,7 @@ export interface ITextComponentProps{
     label:string;
     description:string;
     type:string;
-    onSubmit?:Function;
+    onUpdate?:(newValue:string|number) => void;
 }
 
 export interface ITextComponentStates{
@@ -21,9 +21,13 @@ export class TextComponent extends React.Component<ITextComponentProps, ITextCom
         }
     }
 
-    onKeyUp  = (event:KeyboardEvent) =>{
+    onKeyUp  = (event:KeyboardEvent) => {
         this.state.value = (event.target as HTMLInputElement).value;
-        this.setState(this.state);     
+        this.setState(this.state);  
+
+        if(this.props.onUpdate){
+            this.props.onUpdate(this.state.value);
+        }
     }
 
     render() {

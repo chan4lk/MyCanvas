@@ -2,9 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { MyCanvas, ICanvasElements } from './MyCanvas';
 import { ButtonComponent } from './ButtonComponent';
-import { DialogComponent } from './Dialog';
+import { DialogComponent, DialogComponetProps } from './Dialog';
 import TextElement from './TextElement';
 import { Position } from './Position';
+import { IUpdates } from './IUpdates';
 
 export interface IMyPageProps { }
 export interface IMyPageStates {
@@ -12,6 +13,11 @@ export interface IMyPageStates {
     teaserClass: string;
     buttonClass: string;
     elements: ICanvasElements;
+    dialogs: {
+        headerDialog: IUpdates,
+        teaserDialog: IUpdates,
+        buttonDialog: IUpdates
+    }
 }
 
 export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates> {    
@@ -26,7 +32,13 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
             elements: {
                 background: 'images/header_1.jpg',
                 texts: []
+            },
+            dialogs:{
+                headerDialog: {color:'', fontSize:0, position:Position.TOP_CENTER, value:''},
+                teaserDialog: {color:'', fontSize:0, position:Position.TOP_CENTER, value:''},
+                buttonDialog: {color:'', fontSize:0, position:Position.TOP_CENTER, value:''},
             }
+
         };
 
         //this.addHeader = this.addHeader.bind(this);
@@ -183,13 +195,22 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
                     <MyCanvas width={100} height={100} elements={this.state.elements} />
                 </div>
                 <div className={ this.state.headerClass}>
-                    <DialogComponent heading="Hi" content="User" onHide={this.hideHeaderDialog}/>
+                    <DialogComponent
+                     heading="Hi" 
+                     formProps={this.state.dialogs.headerDialog}
+                     onHide={this.hideHeaderDialog}/>
                 </div>
                 <div className={ this.state.teaserClass}>
-                    <DialogComponent heading="Hi" content="User" onHide={this.hideTeaserDialog}/>
+                    <DialogComponent
+                     heading="Hi" 
+                     formProps={this.state.dialogs.teaserDialog} 
+                     onHide={this.hideTeaserDialog}/>
                 </div>
                 <div className={ this.state.buttonClass }>
-                    <DialogComponent heading="Hi" content="User" onHide={this.hideButtonDialog}/>
+                    <DialogComponent
+                     heading="Hi" 
+                     formProps={this.state.dialogs.buttonDialog} 
+                     onHide={this.hideButtonDialog}/>
                 </div>
             </div>
 

@@ -1,19 +1,33 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { FormContent } from './FormContent'
+import { FormContent, IFormProps } from './FormContent'
+import { IUpdates } from './IUpdates';
+
 export interface DialogComponetProps {
     heading: string;
-    content: string;
+    formProps: IUpdates;
     onHide?: Function;
+}
+
+export interface DialogComponentStates{
+    formProps: IUpdates;
 }
 
 export /**
  * Dialog
  */
-    class DialogComponent extends React.Component<DialogComponetProps, {}> {
+    class DialogComponent extends React.Component<DialogComponetProps, DialogComponentStates> {
 
     constructor(props:DialogComponetProps) {
-        super(props);       
+        super(props);    
+        this.state = {
+            formProps: this.props.formProps
+        }   
+    }
+
+    onUpdate = (props: IUpdates) =>{
+        this.state.formProps = props;
+        this.setState(this.state);
     }
 
     /**
@@ -31,7 +45,14 @@ export /**
                 </div>
                 <div className="ms-Dialog-inner">
                     <div className="ms-Dialog-content">                        
-                            <FormContent showButtonProps={false} />                        
+                            <FormContent
+                                showButtonProps={false} 
+                                value={this.state.formProps.value}
+                                color={this.state.formProps.color} 
+                                fontSize={this.state.formProps.fontSize}
+                                position={this.state.formProps.position}
+                                onUpdate={this.onUpdate}
+                                />                        
                     </div>
                     <div className="ms-Dialog-actions">
                         <div className="ms-Dialog-actionsRight">
