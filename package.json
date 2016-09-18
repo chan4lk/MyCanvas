@@ -27,8 +27,7 @@
     "webpack": "^1.13.2"
   },
   "dependencies": {
-    "jquery": "^3.1.0",
-    "office-ui-fabric": "^2.6.1",
+    "jquery": "^3.1.0",    
     "office-ui-fabric-react": "^0.52.2",
     "react": "^15.3.1",
     "react-dom": "^15.3.1"

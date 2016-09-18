@@ -8,7 +8,7 @@ paths.bundleDest = paths.webroot + "dist/js/";
 module.exports = {
     entry: {
         app: paths.entry,
-        vendor: ["jquery"]
+        vendor: []
     },
     output: {
         filename: paths.bundleDest + "[name].bundle.js",

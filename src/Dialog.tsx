@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
+import { FormContent } from './FormContent'
 export interface DialogComponetProps {
     heading: string;
     content: string;
@@ -30,10 +30,8 @@ export /**
                     <p className="ms-Dialog-title">{this.props.heading}</p>
                 </div>
                 <div className="ms-Dialog-inner">
-                    <div className="ms-Dialog-content">
-                        <form>
-                            {this.props.content}
-                        </form>
+                    <div className="ms-Dialog-content">                        
+                            <FormContent showButtonProps={false} />                        
                     </div>
                     <div className="ms-Dialog-actions">
                         <div className="ms-Dialog-actionsRight">

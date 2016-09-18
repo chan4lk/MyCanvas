@@ -1,22 +1,22 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { MyCanvas, CanvasElements } from './MyCanvas';
+import { MyCanvas, ICanvasElements } from './MyCanvas';
 import { ButtonComponent } from './ButtonComponent';
 import { DialogComponent } from './Dialog';
 import TextElement from './TextElement';
 import { Position } from './Position';
 
-export interface MyPageProps { }
-export interface MyPageStates {
+export interface IMyPageProps { }
+export interface IMyPageStates {
     headerClass: string;
     teaserClass: string;
     buttonClass: string;
-    elements: CanvasElements;
+    elements: ICanvasElements;
 }
 
-export class MyPageComponent extends React.Component<MyPageProps, MyPageStates> {    
+export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates> {    
 
-    constructor(props: MyPageProps) {
+    constructor(props: IMyPageProps) {
         super(props);
 
         this.state = {

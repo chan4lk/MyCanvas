@@ -20,3 +20,7 @@ canvas{
 .hide{
     display: none;
 }
+
+.ms-ColorPicker-table{
+    display: none;
+}

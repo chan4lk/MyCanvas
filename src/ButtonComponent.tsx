@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export interface ButtonComponentProps {
+export interface IButtonComponentProps {
     value: string;
     desciption?: string;
     handleClick?: Function;
@@ -10,7 +10,7 @@ export interface ButtonComponentProps {
 export /**
  * ButtonComponent
  */
-    class ButtonComponent extends React.Component<ButtonComponentProps, {}> {
+    class ButtonComponent extends React.Component<IButtonComponentProps, {}> {
     render() {
         return <button onClick={this.props.handleClick} className="ms-Button ms-Button--hero" id="add-teaser">
             <span className="ms-Button-icon"><i className="ms-Icon ms-Icon--plus"></i></span>

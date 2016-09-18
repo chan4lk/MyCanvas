@@ -4,20 +4,23 @@ import Container from './Container';
 import TextElement from './TextElement';
 import PositionUtils from './PositionUtils';
 
-export interface CanvasElements {
+export interface ICanvasElements {
     background: string;
     texts: Array<TextElement>;
 }
 
 export interface ICanvas {
     toString(): string;
-    draw(elements: CanvasElements): void;
+    draw(elements: ICanvasElements): void;
     addText(text: TextElement): void;
 }
 
-export interface CanvasProps { width: number; height: number; elements: CanvasElements }
+export interface ICanvasProps {
+     width: number; 
+     height: number; 
+     elements: ICanvasElements }
 
-export class MyCanvas extends React.Component<CanvasProps, {}> implements ICanvas {
+export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanvas {
     defaultWidth = 100;
     defaultHeight = 200;
 
@@ -25,9 +28,9 @@ export class MyCanvas extends React.Component<CanvasProps, {}> implements ICanva
     private graphics: CanvasRenderingContext2D;
     private surface: HTMLCanvasElement;
 
-    constructor(props: CanvasProps){
+    constructor(props: ICanvasProps){
         super(props);
-
+        this.updateCanvas = this.updateCanvas.bind(this);
         window.addEventListener('resize', this.updateCanvas, false);
     }
 
