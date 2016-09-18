@@ -16,3 +16,7 @@ canvas{
         margin-bottom: 30px;
     }
 }
+
+.hide{
+    display: none;
+}

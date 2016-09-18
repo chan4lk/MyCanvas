@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" user-scalable="no" />
     <title>My Canvas</title>
-    <script src="dist/js/vendor.bundle.js"></script>
+    
     <link rel="stylesheet" href="dist/css/app.css" />
+    <!-- Dependencies -->
+    <script src="./node_modules/react/dist/react.js"></script>
+    <script src="./node_modules/react-dom/dist/react-dom.js"></script>
 
     <!--During development turn off caching-->
     <meta http-equiv="cache-control" content="max-age=0" />
@@ -17,138 +20,10 @@
     <meta http-equiv="pragma" content="no-cache" />
 </head>
 
-<body>
-    <div class="ms-Grid">
-        <div class="ms-Grid-row">
-            <div class="ms-Grid-col ms-u-md6 ms-u-hiddenSm">
-                <span class="ms-font-m-plus">
-                        <i class="ms-Icon ms-Icon--editBox" aria-hidden="true"></i>
-                            Draw
-                    </span>
-            </div>
-        </div>
-        <div class="ms-Grid-row cr-commands">
-            <div class="ms-Grid-col ms-u-sm12 ms-u-md4 ms-u-lg4">
-                <button class="ms-Button ms-Button--hero" id="add-header">
-                        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                        <span class="ms-Button-label">Add Header</span>
-                        <span class="ms-Button-description">This will a new header to the image.</span>
-                    </button>
-            </div>
-            <div class="ms-Grid-col ms-u-sm12 ms-u-md4 ms-u-lg4">
-                <button class="ms-Button ms-Button--hero" id="add-teaser">
-                        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                        <span class="ms-Button-label">Add Teaser</span>
-                        <span class="ms-Button-description">This will a new teaser to the image.</span>
-                    </button>
-            </div>
-            <div class="ms-Grid-col ms-u-sm12 ms-u-md4 ms-u-lg4">
-                <button class="ms-Button ms-Button--hero" id="add-button">
-                        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
-                        <span class="ms-Button-label">Add Button</span>
-                        <span class="ms-Button-description">This will a new button to the image.</span>
-                    </button>
-            </div>
-        </div>
-
-        <div class="ms-Grid-row">
-            <div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
-                <div class="ms-CommandBar">
-                    <div class="ms-CommandBarSearch">
-                        <input class="ms-CommandBarSearch-input" type="text" placeholder="Search" tabindex="1">
-                        <div class="ms-CommandBarSearch-iconWrapper ms-CommandBarSearch-iconSearchWrapper">
-                            <i class="ms-Icon ms-Icon--search"></i>
-                        </div>
-                        <div class="ms-CommandBarSearch-iconWrapper ms-CommandBarSearch-iconClearWrapper ms-font-s">
-                            <i class="ms-Icon ms-Icon--x"></i>
-                        </div>
-                    </div>
-                    <div class="ms-CommandBar-sideCommands">
-                        <div class="ms-CommandBarItem">
-                            <div class="ms-CommandBarItem-linkWrapper">
-                                <a class="ms-CommandBarItem-link" tabindex="1">
-                                    <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--reactivate"></span>
-                                    <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Undo</span>
-                                    <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ms-CommandBar-mainArea">
-                        <div class="ms-CommandBarItem">
-                            <div class="ms-CommandBarItem-linkWrapper">
-                                <a class="ms-CommandBarItem-link" tabindex="1">
-                                    <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--star"></span>
-                                    <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">New</span>
-                                    <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ms-CommandBarItem">
-                            <div class="ms-CommandBarItem-linkWrapper">
-                                <a class="ms-CommandBarItem-link" tabindex="1">
-                                    <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--save"></span>
-                                    <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Delete</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ms-CommandBarItem">
-                            <div class="ms-CommandBarItem-linkWrapper">
-                                <a class="ms-CommandBarItem-link" tabindex="1">
-                                    <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--flag"></span>
-                                    <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Archive</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ms-CommandBarItem ms-CommandBarItem--hasTextOnly">
-                            <div class="ms-CommandBarItem-linkWrapper">
-                                <a class="ms-CommandBarItem-link" tabindex="1">
-                                    <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Junk</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ms-CommandBarItem ms-CommandBarItem--hasTextOnly">
-                            <div class="ms-CommandBarItem-linkWrapper">
-                                <a class="ms-CommandBarItem-link" tabindex="1">
-                                    <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Move To</span>
-                                    <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ms-CommandBarItem ms-CommandBarItem--hasTextOnly">
-                            <div class="ms-CommandBarItem-linkWrapper">
-                                <a class="ms-CommandBarItem-link" tabindex="1">
-                                    <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Categories</span>
-                                    <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="ms-CommandBarItem ms-CommandBarItem--iconOnly ms-CommandBarItem-overflow">
-                            <div class="ms-CommandBarItem-linkWrapper">
-                                <a class="ms-CommandBarItem-link" tabindex="2">
-                                    <span class="ms-CommandBarItem-icon ms-Icon ms-Icon--ellipsis"></span>
-                                    <span class="ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular">Ellipsis</span>
-                                    <i class="ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown"></i>
-                                </a>
-                            </div>
-                            <ul class="ms-CommandBar-overflowMenu ms-ContextualMenu"></ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ms-Grid-row">
-            <canvas id="drawing_area" class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12">
-                Browser does not suport canvas element.
-            </canvas>
-        </div>
-        <div class="ms-Grid-row" id="dialog-preview">
-
-        </div>
+<body>    
+    <div id="container">
     </div>
-
-
+    <script src="dist/js/vendor.bundle.js"></script>
     <script src="dist/js/app.bundle.js"></script>
 </body>
 

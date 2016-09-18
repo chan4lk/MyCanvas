@@ -56,7 +56,7 @@ gulp.task('min:js', ['clean:js'], function () {
 gulp.task("min", ["min:js", "min:css"]);
 
 gulp.task('watch', ['min:js'], function () {
-	gulp.watch('src/**/*.ts', ['min:js']);
+	gulp.watch('src/**/*.ts[x]', ['min:js']);
 	gulp.watch('css/**/*.css', ['min:css']);
 });
 

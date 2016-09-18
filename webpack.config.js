@@ -2,7 +2,7 @@
 var paths = {
     webroot: "./"
 };
-paths.entry = paths.webroot + "src/bootstrap.ts";
+paths.entry = paths.webroot + "src/bootstrap.tsx";
 paths.bundleDest = paths.webroot + "dist/js/";
 
 module.exports = {
@@ -16,11 +16,16 @@ module.exports = {
     },
     devtool: "source-map",
     resolve: {
-        extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+        extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.jsx']
     },
     module: {
         loaders: [
-            { test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/ }
+            { test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/ },
+            { test: /\.tsx$/, loader: 'ts-loader', exclude: /node_modules/ }
+        ],
+        preLoaders: [
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            { test: /\.js$/, loader: "source-map-loader" }
         ]
     },
     plugins: [        
@@ -41,5 +46,9 @@ module.exports = {
             mangle : true,
             comments: false
         })
-    ]
+    ],
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
+    },
 }
