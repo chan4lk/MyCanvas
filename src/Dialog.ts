@@ -6,7 +6,7 @@ export /**
     /**
      * Get HTML
      */
-    public GetHTML(heading:string = "Dialog Heading") {
+    public GetHTML(heading:string = "Dialog Heading", content:string = "Hi") {        
         return `<div class="ms-Dialog">
                     <div class="ms-Overlay"></div>
                     <div class="ms-Dialog-main">
@@ -18,10 +18,9 @@ export /**
                         </div>
                         <div class="ms-Dialog-inner">
                         <div class="ms-Dialog-content">
-                          <form>
-                          
-                            <input type="color" name="favcolor">
-                          </form>
+                            <form>
+                                ${content}
+                            </form>
                         </div>
                         <div class="ms-Dialog-actions">
                             <div class="ms-Dialog-actionsRight">

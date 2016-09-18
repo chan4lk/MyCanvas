@@ -3,6 +3,7 @@ import TextElement from './TextElement';
 import { Position } from './Position';
 import ButtonElement from './ButtonElement';
 import UIUtils from './UIUtils';
+import FormContent from './FormContent';
 
 // Initialize canvas.
 let surface: HTMLCanvasElement = document.getElementById('drawing_area') as HTMLCanvasElement;
@@ -31,5 +32,5 @@ document.getElementById('add-teaser').addEventListener('click', (e)=>{
 document.getElementById('add-button').addEventListener('click', (e)=>{
     //let button = new ButtonElement('Visit', '10pt Georgia', '#eee', Position.BOTTOM_RIGHT);
     //canvas.AddText(button);
-    UIUtils.ShowDialog('Button');
+    UIUtils.ShowDialog('Button', FormContent.ButtonForm);
 });
