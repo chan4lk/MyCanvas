@@ -20,7 +20,7 @@ export interface IMyPageStates {
     }
 }
 
-export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates> {    
+export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates> {
 
     constructor(props: IMyPageProps) {
         super(props);
@@ -33,10 +33,10 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
                 background: 'images/header_1.jpg',
                 texts: []
             },
-            dialogs:{
-                headerDialog: {color:'', fontSize:0, position:Position.TOP_CENTER, value:''},
-                teaserDialog: {color:'', fontSize:0, position:Position.TOP_CENTER, value:''},
-                buttonDialog: {color:'', fontSize:0, position:Position.TOP_CENTER, value:''},
+            dialogs: {
+                headerDialog: { color: '', fontSize: 0, position: Position.TOP_CENTER, value: '' },
+                teaserDialog: { color: '', fontSize: 0, position: Position.TOP_CENTER, value: '' },
+                buttonDialog: { color: '', fontSize: 0, position: Position.TOP_CENTER, value: '' },
             }
 
         };
@@ -44,36 +44,43 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
         //this.addHeader = this.addHeader.bind(this);
     }
 
-    addHeader = ()=> {
+    addHeader = () => {
         this.state.headerClass = "ms-Grid";
         this.setState(this.state);
     }
 
-    hideHeaderDialog = () => {
+    hideHeaderDialog = (updates: IUpdates) => {
         this.state.headerClass = "ms-Grid hide";
-        this.state.elements.texts.push(new TextElement('Header' + this.state.elements.texts.length, '30pt Arial', '#fff', Position.TOP_LEFT));
-        this.setState(this.state);
+        this.updateElements(updates);
     }
 
-    addTeaser = ()=> {
+    addTeaser = () => {
         this.state.teaserClass = "ms-Grid";
         this.setState(this.state);
     }
 
-    hideTeaserDialog = () => {
+    hideTeaserDialog = (updates: IUpdates) => {
         this.state.teaserClass = "ms-Grid hide";
-        this.state.elements.texts.push(new TextElement('Teaser', '20pt Arial', '#fff', Position.MIDDLE_CENTER));
-        this.setState(this.state);
+        this.updateElements(updates);
     }
 
-    addButton = ()=> {
+    addButton = () => {
         this.state.buttonClass = "ms-Grid";
         this.setState(this.state);
     }
 
-    hideButtonDialog = () => {
+    hideButtonDialog = (updates: IUpdates) => {
         this.state.buttonClass = "ms-Grid hide";
-        this.state.elements.texts.push(new TextElement('Button', '10pt Arial', '#fff', Position.BOTTOM_RIGHT));
+        this.updateElements(updates)
+    }
+
+    updateElements(updates: IUpdates) {
+
+        this.state.elements.texts.push(new TextElement(
+            updates.value,
+            updates.fontSize + 'pt Arial',
+            updates.color,
+            updates.position));
         this.setState(this.state);
     }
 
@@ -196,21 +203,21 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
                 </div>
                 <div className={ this.state.headerClass}>
                     <DialogComponent
-                     heading="Hi" 
-                     formProps={this.state.dialogs.headerDialog}
-                     onHide={this.hideHeaderDialog}/>
+                        heading="Hi"
+                        formProps={this.state.dialogs.headerDialog}
+                        onHide={this.hideHeaderDialog}/>
                 </div>
                 <div className={ this.state.teaserClass}>
                     <DialogComponent
-                     heading="Hi" 
-                     formProps={this.state.dialogs.teaserDialog} 
-                     onHide={this.hideTeaserDialog}/>
+                        heading="Hi"
+                        formProps={this.state.dialogs.teaserDialog}
+                        onHide={this.hideTeaserDialog}/>
                 </div>
                 <div className={ this.state.buttonClass }>
                     <DialogComponent
-                     heading="Hi" 
-                     formProps={this.state.dialogs.buttonDialog} 
-                     onHide={this.hideButtonDialog}/>
+                        heading="Hi"
+                        formProps={this.state.dialogs.buttonDialog}
+                        onHide={this.hideButtonDialog}/>
                 </div>
             </div>
 

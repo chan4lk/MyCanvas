@@ -6,7 +6,7 @@ import { IUpdates } from './IUpdates';
 export interface DialogComponetProps {
     heading: string;
     formProps: IUpdates;
-    onHide?: Function;
+    onHide?: (updats: IUpdates)=> void;
 }
 
 export interface DialogComponentStates{
@@ -28,6 +28,12 @@ export /**
     onUpdate = (props: IUpdates) =>{
         this.state.formProps = props;
         this.setState(this.state);
+    }
+
+    onHide = () =>{
+        if(this.props.onHide){
+            this.props.onHide(this.state.formProps);
+        }
     }
 
     /**
@@ -56,10 +62,10 @@ export /**
                     </div>
                     <div className="ms-Dialog-actions">
                         <div className="ms-Dialog-actionsRight">
-                            <button onClick={this.props.onHide} className="ms-Dialog-action ms-Button ms-Button--primary btn-action-positive">
+                            <button onClick={this.onHide} className="ms-Dialog-action ms-Button ms-Button--primary btn-action-positive">
                                 <span className="ms-Button-label">OK</span>
                             </button>
-                            <button onClick={this.props.onHide} className="ms-Dialog-action ms-Button btn-action-negetive">
+                            <button onClick={this.onHide} className="ms-Dialog-action ms-Button btn-action-negetive">
                                 <span className="ms-Button-label">Cancel</span>
                             </button>
                         </div>
