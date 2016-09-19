@@ -13,5 +13,5 @@ export enum Position {
     MIDDLE_RIGHT = 5,
     BOTTOM_LEFT = 6,
     BOTTOM_CENTER = 7,
-    BOTTOM_RIGHT =8
+    BOTTOM_RIGHT = 8
 };

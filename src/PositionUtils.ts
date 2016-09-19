@@ -26,7 +26,7 @@ export default class PositionUtils {
             case Position.TOP_RIGHT:
             case Position.MIDDLE_RIGHT:
             case Position.BOTTOM_RIGHT:
-                return container.Width ;
+                return container.Width;
         }
     }
 
@@ -43,15 +43,17 @@ export default class PositionUtils {
     public static getY(pos: Position, container: Container) {
         switch (pos) {
             case Position.TOP_LEFT:
-            case Position.MIDDLE_LEFT:
-            case Position.BOTTOM_LEFT:
-                return 50;
             case Position.TOP_CENTER:
-            case Position.MIDDLE_CENTER:
-            case Position.BOTTOM_CENTER:
-                return container.Height / 2;
             case Position.TOP_RIGHT:
+                return 10;
+
+            case Position.MIDDLE_LEFT:
+            case Position.MIDDLE_CENTER:
             case Position.MIDDLE_RIGHT:
+                return container.Height / 2;
+
+            case Position.BOTTOM_LEFT:
+            case Position.BOTTOM_CENTER:
             case Position.BOTTOM_RIGHT:
                 return container.Height;
         }

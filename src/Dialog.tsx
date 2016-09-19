@@ -1,37 +1,36 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { FormContent, IFormProps } from './FormContent'
+import { FormContent } from './FormContent'
 import { IUpdates } from './IUpdates';
 
-export interface DialogComponetProps {
+export interface IDialogComponetProps {
     heading: string;
     formProps: IUpdates;
-    onHide?: (updats: IUpdates)=> void;
+    onHide?: (updats: IUpdates) => void;
 }
 
-export interface DialogComponentStates{
+export interface IDialogComponentStates {
     formProps: IUpdates;
 }
 
 export /**
- * Dialog
- */
-    class DialogComponent extends React.Component<DialogComponetProps, DialogComponentStates> {
+        * Dialog
+        */
+    class DialogComponent extends React.Component<IDialogComponetProps, IDialogComponentStates> {
 
-    constructor(props:DialogComponetProps) {
-        super(props);    
+    constructor(props: IDialogComponetProps) {
+        super(props);
         this.state = {
             formProps: this.props.formProps
-        }   
+        }
     }
 
-    onUpdate = (props: IUpdates) =>{
+    onUpdate = (props: IUpdates) => {
         this.state.formProps = props;
         this.setState(this.state);
     }
 
-    onHide = () =>{
-        if(this.props.onHide){
+    onHide = () => {
+        if (this.props.onHide) {
             this.props.onHide(this.state.formProps);
         }
     }
@@ -50,15 +49,15 @@ export /**
                     <p className="ms-Dialog-title">{this.props.heading}</p>
                 </div>
                 <div className="ms-Dialog-inner">
-                    <div className="ms-Dialog-content">                        
-                            <FormContent
-                                showButtonProps={false} 
-                                value={this.state.formProps.value}
-                                color={this.state.formProps.color} 
-                                fontSize={this.state.formProps.fontSize}
-                                position={this.state.formProps.position}
-                                onUpdate={this.onUpdate}
-                                />                        
+                    <div className="ms-Dialog-content">
+                        <FormContent
+                            showButtonProps={false}
+                            value={this.state.formProps.value}
+                            color={this.state.formProps.color}
+                            fontSize={this.state.formProps.fontSize}
+                            position={this.state.formProps.position}
+                            onUpdate={this.onUpdate}
+                            />
                     </div>
                     <div className="ms-Dialog-actions">
                         <div className="ms-Dialog-actionsRight">

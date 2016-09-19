@@ -1,5 +1,4 @@
 ﻿import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import Container from './Container';
 import TextElement from './TextElement';
 import PositionUtils from './PositionUtils';
@@ -16,9 +15,10 @@ export interface ICanvas {
 }
 
 export interface ICanvasProps {
-     width: number; 
-     height: number; 
-     elements: ICanvasElements }
+    width: number;
+    height: number;
+    elements: ICanvasElements;
+}
 
 export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanvas {
     defaultWidth = 100;
@@ -28,7 +28,7 @@ export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanv
     private graphics: CanvasRenderingContext2D;
     private surface: HTMLCanvasElement;
 
-    constructor(props: ICanvasProps){
+    constructor(props: ICanvasProps) {
         super(props);
         this.updateCanvas = this.updateCanvas.bind(this);
         window.addEventListener('resize', this.updateCanvas, false);
@@ -54,7 +54,7 @@ export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanv
 
     }
 
-    clearCanvas(){
+    clearCanvas() {
         this.graphics.clearRect(0, 0, this.surface.width, this.surface.height);
     }
 
@@ -104,13 +104,15 @@ export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanv
         let line = '';
         let x = PositionUtils.getX(text.position, this.container);
         let y = PositionUtils.getY(text.position, this.container);
-        let maxWidth = this.container.Width - 20 - x;
-        let lineHeight = 25;
+        let maxWidth = this.container.Width - x;
+        let lineHeight = parseInt(text.font.substr(0, 2), 10);
+
         x = (this.container.Width - maxWidth) / 2;
+        y = y + lineHeight/2;
 
         this.graphics.font = text.font;
         this.graphics.fillStyle = text.color;
-        //this.context.textBaseline = 'Top';
+        // this.context.textBaseline = 'Top';
 
         for (let n = 0; n < words.length; n++) {
             let testLine = line + words[n] + ' ';
@@ -120,8 +122,7 @@ export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanv
                 this.graphics.fillText(line, x, y);
                 line = words[n] + ' ';
                 y += lineHeight;
-            }
-            else {
+            }else {
                 line = testLine;
             }
         }
@@ -141,7 +142,6 @@ export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanv
 
     componentDidMount() {
         this.updateCanvas();
-
     }
 
     updateCanvas() {

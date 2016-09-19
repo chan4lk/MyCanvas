@@ -1,8 +1,7 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { MyCanvas, ICanvasElements } from './MyCanvas';
 import { ButtonComponent } from './ButtonComponent';
-import { DialogComponent, DialogComponetProps } from './Dialog';
+import { DialogComponent } from './Dialog';
 import TextElement from './TextElement';
 import { Position } from './Position';
 import { IUpdates } from './IUpdates';
@@ -41,7 +40,7 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
 
         };
 
-        //this.addHeader = this.addHeader.bind(this);
+        // this.addHeader = this.addHeader.bind(this);
     }
 
     addHeader = () => {
