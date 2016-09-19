@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
 export interface HelloProps { compiler: string; framework: string; }
 
@@ -11,6 +11,6 @@ export class Hello extends React.Component<HelloProps, {}> {
 
 export class ButtonRender {
     public render(element: HTMLElement) {
-        ReactDOM.render(<Hello compiler="tsx" framework="react"/>, element);
+        ReactDOM.render(<Hello compiler='tsx' framework='react'/>, element);
     }
 }
