@@ -6,7 +6,7 @@
  * @export
  * @class TextElement
  */
-export default class TextElement {
+export class TextElement {
 
     /**
      * The value of the TextElement.

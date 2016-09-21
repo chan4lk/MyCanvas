@@ -2,11 +2,16 @@ import * as React from 'react';
 import { MyCanvas, ICanvasElements } from './MyCanvas';
 import { ButtonComponent } from './ButtonComponent';
 import { DialogComponent } from './Dialog';
-import TextElement from './TextElement';
+import { TextElement } from './TextElement';
 import { Position } from './Position';
 import { IUpdates } from './IUpdates';
+import { DialogResult } from './DialogResult';
+import { Constants } from './Constants';
 
-export interface IMyPageProps { }
+export interface IMyPageProps {
+    background: string;
+}
+
 export interface IMyPageStates {
     headerClass: string;
     teaserClass: string;
@@ -19,68 +24,88 @@ export interface IMyPageStates {
     };
 }
 
-export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates> {
+export interface IMyPageComponent {
+    addHeader: () => void;
+    hideHeaderDialog: (updates: IUpdates, result: DialogResult) => void;
+}
+
+export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates> implements IMyPageComponent {
 
     constructor(props: IMyPageProps) {
         super(props);
 
         this.state = {
-            headerClass: 'ms-Grid-row hide',
-            teaserClass: 'ms-Grid-row hide',
-            buttonClass: 'ms-Grid-row hide',
+            headerClass: Constants.HiddenClass,
+            teaserClass: Constants.HiddenClass,
+            buttonClass: Constants.HiddenClass,
             elements: {
-                background: 'images/header_1.jpg',
+                background: this.props.background,
                 texts: []
             },
             dialogs: {
-                headerDialog: { color: '', fontSize: 0, position: Position.TOP_CENTER, value: '' },
-                teaserDialog: { color: '', fontSize: 0, position: Position.TOP_CENTER, value: '' },
-                buttonDialog: { color: '', fontSize: 0, position: Position.TOP_CENTER, value: '' },
+                headerDialog: { color: '#fff', fontSize: 10, position: Position.TOP_CENTER, value: 'Header' },
+                teaserDialog: { color: '#fff', fontSize: 10, position: Position.TOP_CENTER, value: 'Teaser' },
+                buttonDialog: { color: '#fff', fontSize: 10, position: Position.TOP_CENTER, value: 'View' },
             }
 
         };
 
-        // this.addHeader = this.addHeader.bind(this);
     }
 
     addHeader = () => {
-        this.state.headerClass = 'ms-Grid';
+        this.state.headerClass = Constants.VisibleClass;
         this.setState(this.state);
     }
 
-    hideHeaderDialog = (updates: IUpdates) => {
-        this.state.headerClass = 'ms-Grid hide';
-        this.updateElements(updates);
+    hideHeaderDialog = (updates: IUpdates, result: DialogResult) => {
+        this.state.headerClass = Constants.HiddenClass;
+
+        if (DialogResult.OK === result) {
+            this.updateElements(updates);
+        }
+
+        this.setState(this.state);
     }
 
     addTeaser = () => {
-        this.state.teaserClass = 'ms-Grid';
+        this.state.teaserClass = Constants.VisibleClass;
         this.setState(this.state);
     }
 
-    hideTeaserDialog = (updates: IUpdates) => {
-        this.state.teaserClass = 'ms-Grid hide';
+    hideTeaserDialog = (updates: IUpdates, result: DialogResult) => {
+        this.state.teaserClass = Constants.HiddenClass;
         this.updateElements(updates);
     }
 
     addButton = () => {
-        this.state.buttonClass = 'ms-Grid';
+        this.state.buttonClass = Constants.VisibleClass;
         this.setState(this.state);
     }
 
-    hideButtonDialog = (updates: IUpdates) => {
-        this.state.buttonClass = 'ms-Grid hide';
+    hideButtonDialog = (updates: IUpdates, result: DialogResult) => {
+        this.state.buttonClass = Constants.HiddenClass;
         this.updateElements(updates);
+    }
+
+    onUndo = () => {
+        if (this.state.elements.texts.length > 0) {
+            this.state.elements.texts = this.state.elements.texts.slice(0, this.state.elements.texts.length - 1);
+            this.setState(this.state);
+        }
+    }
+
+    onClear = () => {
+        this.state.elements.texts = [];
+        this.setState(this.state);
     }
 
     updateElements(updates: IUpdates) {
 
         this.state.elements.texts.push(new TextElement(
-            updates.value,
-            updates.fontSize + 'pt Arial',
+            updates.value + this.state.elements.texts.length,
+            `${updates.fontSize}pt ${Constants.FontName}`,
             updates.color,
             updates.position));
-        this.setState(this.state);
     }
 
     componentDidMount() {
@@ -125,7 +150,7 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
                             <div className='ms-CommandBar-sideCommands'>
                                 <div className='ms-CommandBarItem'>
                                     <div className='ms-CommandBarItem-linkWrapper'>
-                                        <a className='ms-CommandBarItem-link' tabIndex='1'>
+                                        <a className='ms-CommandBarItem-link' tabIndex='1' onClick={this.onUndo}>
                                             <span className='ms-CommandBarItem-icon ms-Icon ms-Icon--reactivate'></span>
                                             <span className='ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular'>Undo</span>
                                             <i className='ms-CommandBarItem-chevronDown ms-Icon ms-Icon--chevronDown'></i>
@@ -145,7 +170,7 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
                                 </div>
                                 <div className='ms-CommandBarItem'>
                                     <div className='ms-CommandBarItem-linkWrapper'>
-                                        <a className='ms-CommandBarItem-link' tabIndex='1'>
+                                        <a className='ms-CommandBarItem-link' tabIndex='1' onClick={this.onClear}>
                                             <span className='ms-CommandBarItem-icon ms-Icon ms-Icon--save'></span>
                                             <span className='ms-CommandBarItem-commandText ms-font-m ms-font-weight-regular'>Delete</span>
                                         </a>

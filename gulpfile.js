@@ -16,6 +16,7 @@ var paths = {
 paths.src = paths.webroot + 'src/*.ts';
 paths.dist = paths.webroot + 'dist/';
 paths.css = paths.webroot + "css/";
+paths.sass = paths.webroot + "css/*.scss";
 
 paths.cssDest = paths.dist + "css/app.css";
 paths.cssMin = paths.dist + "css/app.min.css";
@@ -37,7 +38,13 @@ gulp.task("copy:css", function () {
                .pipe(gulp.dest(paths.css));
 });
 
-gulp.task("min:css", ["clean:css"], function () {
+gulp.task("sass", function(){
+    return gulp.src(paths.sass)
+               .pipe($.sass())
+               .pipe(gulp.dest(paths.css));
+});
+
+gulp.task("min:css", ["clean:css", "sass"], function () {
     return gulp.src([paths.css + "*.css"])
         .pipe($.concat(paths.cssDest))
         .pipe(gulp.dest('./'))
@@ -57,7 +64,7 @@ gulp.task("min", ["min:js", "min:css"]);
 
 gulp.task('watch', ['min:js'], function () {
 	gulp.watch('src/**/*.ts[x]', ['min:js']);
-	gulp.watch('css/**/*.css', ['min:css']);
+	gulp.watch('css/**/*.scss', ['min:css']);
 });
 
 gulp.task('serve', function () {

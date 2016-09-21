@@ -1,0 +1,27 @@
+#container{
+    .cr-banner {
+        background: #fff;
+    }
+
+    .cr-commands{
+        padding-top: 10px;
+        margin-bottom: 0px;
+        @media (max-width: 480px){        
+            margin-bottom: 10px;        
+        }        
+    }
+
+    canvas {
+        border: 1px solid;  
+        padding-left: 0px;
+        padding-right: 0px;      
+    }    
+
+    .hide {
+        display: none;
+    }
+
+    .ms-ColorPicker-table{
+        display: none;
+    }
+}

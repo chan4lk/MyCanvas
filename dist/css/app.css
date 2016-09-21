@@ -12113,29 +12113,23 @@
   padding: 0;
 }
 
-.cr-banner {
-    background: #fff;
-}
+#container .cr-banner {
+  background: #fff; }
 
-.cr-commands{
-    padding-top: 10px;
-     margin-bottom: 0px;
-}
+#container .cr-commands {
+  padding-top: 10px;
+  margin-bottom: 0px; }
+  @media (max-width: 480px) {
+    #container .cr-commands {
+      margin-bottom: 10px; } }
 
-canvas{
-    border: 1px solid;
-}
+#container canvas {
+  border: 1px solid;
+  padding-left: 0px;
+  padding-right: 0px; }
 
-@media (min-width: 480px){
-    .cr-commands{
-        margin-bottom: 30px;
-    }
-}
+#container .hide {
+  display: none; }
 
-.hide{
-    display: none;
-}
-
-.ms-ColorPicker-table{
-    display: none;
-}
+#container .ms-ColorPicker-table {
+  display: none; }

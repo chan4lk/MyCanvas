@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { FormContent } from './FormContent'
 import { IUpdates } from './IUpdates';
+import { DialogResult } from './DialogResult';
 
 export interface IDialogComponetProps {
     heading: string;
     formProps: IUpdates;
-    onHide?: (updats: IUpdates) => void;
+    onHide?: (updats: IUpdates, result:DialogResult) => void;
 }
 
 export interface IDialogComponentStates {
@@ -29,9 +30,15 @@ export /**
         this.setState(this.state);
     }
 
-    onHide = () => {
+    onConfirm = (event:MouseEvent) => {
         if (this.props.onHide) {
-            this.props.onHide(this.state.formProps);
+          this.props.onHide(this.state.formProps, DialogResult.OK);
+        }
+    }
+
+    onCancel = (event:MouseEvent) => {
+        if (this.props.onHide) {
+          this.props.onHide(this.state.formProps, DialogResult.Cancel);
         }
     }
 
@@ -61,17 +68,16 @@ export /**
                     </div>
                     <div className="ms-Dialog-actions">
                         <div className="ms-Dialog-actionsRight">
-                            <button onClick={this.onHide} className="ms-Dialog-action ms-Button ms-Button--primary btn-action-positive">
+                            <button onClick={this.onConfirm} className="ms-Dialog-action ms-Button ms-Button--primary btn-action-positive">
                                 <span className="ms-Button-label">OK</span>
                             </button>
-                            <button onClick={this.onHide} className="ms-Dialog-action ms-Button btn-action-negetive">
+                            <button onClick={this.onCancel} className="ms-Dialog-action ms-Button btn-action-negetive">
                                 <span className="ms-Button-label">Cancel</span>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-            ;
+        </div>;
     }
 }
