@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { FormContent } from './FormContent'
+import { FormContent } from './FormContent';
 import { IUpdates } from './IUpdates';
 import { DialogResult } from './DialogResult';
 
 export interface IDialogComponetProps {
     heading: string;
     formProps: IUpdates;
-    onHide?: (updats: IUpdates, result:DialogResult) => void;
+    onHide?: (updats: IUpdates, result: DialogResult) => void;
 }
 
 export interface IDialogComponentStates {
@@ -22,7 +22,7 @@ export /**
         super(props);
         this.state = {
             formProps: this.props.formProps
-        }
+        };
     }
 
     onUpdate = (props: IUpdates) => {
@@ -30,13 +30,13 @@ export /**
         this.setState(this.state);
     }
 
-    onConfirm = (event:MouseEvent) => {
+    onConfirm = (event: MouseEvent) => {
         if (this.props.onHide) {
           this.props.onHide(this.state.formProps, DialogResult.OK);
         }
     }
 
-    onCancel = (event:MouseEvent) => {
+    onCancel = (event: MouseEvent) => {
         if (this.props.onHide) {
           this.props.onHide(this.state.formProps, DialogResult.Cancel);
         }
@@ -46,17 +46,17 @@ export /**
      * Get HTML
      */
     render() {
-        return <div className="ms-Dialog">
-            <div className="ms-Overlay"></div>
-            <div className="ms-Dialog-main">
-                <button className="ms-Dialog-button ms-Dialog-button--close">
-                    <i className="ms-Icon ms-Icon--x"></i>
+        return <div className='ms-Dialog'>
+            <div className='ms-Overlay'></div>
+            <div className='ms-Dialog-main'>
+                <button className='ms-Dialog-button ms-Dialog-button--close'>
+                    <i className='ms-Icon ms-Icon--x'></i>
                 </button>
-                <div className="ms-Dialog-header">
-                    <p className="ms-Dialog-title">{this.props.heading}</p>
+                <div className='ms-Dialog-header'>
+                    <p className='ms-Dialog-title'>{this.props.heading}</p>
                 </div>
-                <div className="ms-Dialog-inner">
-                    <div className="ms-Dialog-content">
+                <div className='ms-Dialog-inner'>
+                    <div className='ms-Dialog-content'>
                         <FormContent
                             showButtonProps={false}
                             value={this.state.formProps.value}
@@ -66,13 +66,13 @@ export /**
                             onUpdate={this.onUpdate}
                             />
                     </div>
-                    <div className="ms-Dialog-actions">
-                        <div className="ms-Dialog-actionsRight">
-                            <button onClick={this.onConfirm} className="ms-Dialog-action ms-Button ms-Button--primary btn-action-positive">
-                                <span className="ms-Button-label">OK</span>
+                    <div className='ms-Dialog-actions'>
+                        <div className='ms-Dialog-actionsRight'>
+                            <button onClick={this.onConfirm} className='ms-Dialog-action ms-Button ms-Button--primary btn-action-positive'>
+                                <span className='ms-Button-label'>OK</span>
                             </button>
-                            <button onClick={this.onCancel} className="ms-Dialog-action ms-Button btn-action-negetive">
-                                <span className="ms-Button-label">Cancel</span>
+                            <button onClick={this.onCancel} className='ms-Dialog-action ms-Button btn-action-negetive'>
+                                <span className='ms-Button-label'>Cancel</span>
                             </button>
                         </div>
                     </div>

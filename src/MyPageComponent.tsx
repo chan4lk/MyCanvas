@@ -74,7 +74,11 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
 
     hideTeaserDialog = (updates: IUpdates, result: DialogResult) => {
         this.state.teaserClass = Constants.HiddenClass;
-        this.updateElements(updates);
+        if (DialogResult.OK === result) {
+            this.updateElements(updates);
+        }
+
+        this.setState(this.state);
     }
 
     addButton = () => {
@@ -84,7 +88,11 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
 
     hideButtonDialog = (updates: IUpdates, result: DialogResult) => {
         this.state.buttonClass = Constants.HiddenClass;
-        this.updateElements(updates);
+        if (DialogResult.OK === result) {
+            this.updateElements(updates);
+        }
+
+        this.setState(this.state);
     }
 
     onUndo = () => {

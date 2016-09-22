@@ -1,6 +1,6 @@
 import {Position} from './Position';
 
-export interface IUpdates{
+export interface IUpdates {
     value: string;
     position: Position;
     fontSize: number;

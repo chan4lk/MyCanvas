@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 import Container from './Container';
-import TextElement from './TextElement';
+import { TextElement } from './TextElement';
 import PositionUtils from './PositionUtils';
 
 export interface ICanvasElements {
@@ -108,7 +108,7 @@ export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanv
         let lineHeight = parseInt(text.font.substr(0, 2), 10);
 
         x = (this.container.Width - maxWidth) / 2;
-        y = y + lineHeight/2;
+        y = y + lineHeight / 2;
 
         this.graphics.font = text.font;
         this.graphics.fillStyle = text.color;
@@ -159,10 +159,10 @@ export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanv
     render() {
         return (
             <canvas
-                ref="canvas"
+                ref='canvas'
                 width={this.props.width}
                 height={this.props.height}
-                className="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12"/>
+                className='ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg12'/>
         );
     }
 }

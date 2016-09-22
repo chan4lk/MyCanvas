@@ -1,4 +1,4 @@
-import TextElement from './TextElement';
+import { TextElement } from './TextElement';
 import { Position } from './Position';
 
 /**
@@ -8,7 +8,7 @@ import { Position } from './Position';
  * @class ButtonElement
  * @extends {TextElement}
  */
-export default class ButtonElement extends TextElement{
+export class ButtonElement extends TextElement {
 
     /**
      * Creates an instance of ButtonElement.
@@ -20,7 +20,7 @@ export default class ButtonElement extends TextElement{
      * 
      * @memberOf ButtonElement
      */
-    constructor(value: string, font: string, color: string, position: Position){
+    constructor(value: string, font: string, color: string, position: Position) {
         super(value, font, color, position);
     }
 }
