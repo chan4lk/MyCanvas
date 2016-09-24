@@ -1,4 +1,16 @@
-import { createStore , Action} from 'redux';
+import { Action } from 'redux';
+import 'core-js/library/fn/object/assign';
+import { TextElement } from '../entities/TextElement';
+
+export interface IState {
+  background: string;
+  texts: Array<TextElement>;
+}
+
+const initialState: IState = {
+  background: '',
+  texts: []
+};
 
 /**
  * This is a reducer, a pure function with (state, action) => state signature.
@@ -13,33 +25,27 @@ import { createStore , Action} from 'redux';
  * project.
  */
 function counter(state = 0, action: Action) {
+
   switch (action.type) {
-  case 'INCREMENT':
-    return state + 1;
-  case 'DECREMENT':
-    return state - 1;
-  default:
-    return state;
+    case 'INCREMENT':
+      return state + 1;
+    // return Object.assign({}, state, { });
+    case 'DECREMENT':
+      // return Object.assign({}, state, { });
+      return state - 1;
+    default:
+      return state;
   }
 }
 
-// Create a Redux store holding the state of your app.
-// Its API is { subscribe, dispatch, getState }.
-let store = createStore(counter);
+function dialog(state = initialState, action: Action) {
+  switch (action.type) {
+    case 'ADD_TEXT':
+      return Object.assign({}, state, {text: 'chan'});
+    default:
+      return state;
+  }
+}
 
-// You can use subscribe() to update the UI in response to state changes.
-// Normally you'd use a view binding library (e.g. React Redux) rather than subscribe() directly.
-// However it can also be handy to persist the current state in the localStorage.
 
-store.subscribe(() =>
-  console.log(store.getState())
-);
-
-// The only way to mutate the internal state is to dispatch an action.
-// The actions can be serialized, logged or stored and later replayed.
-store.dispatch({ type: 'INCREMENT' });
-// 1
-store.dispatch({ type: 'INCREMENT' });
-// 2
-store.dispatch({ type: 'DECREMENT' });
-// 1
+export { counter };

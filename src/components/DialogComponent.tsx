@@ -32,13 +32,13 @@ export /**
 
     onConfirm = (event: MouseEvent) => {
         if (this.props.onHide) {
-          this.props.onHide(this.state.formProps, DialogResult.OK);
+            this.props.onHide(this.state.formProps, DialogResult.OK);
         }
     }
 
     onCancel = (event: MouseEvent) => {
         if (this.props.onHide) {
-          this.props.onHide(this.state.formProps, DialogResult.Cancel);
+            this.props.onHide(this.state.formProps, DialogResult.Cancel);
         }
     }
 

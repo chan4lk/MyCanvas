@@ -9,6 +9,7 @@ var $ = require("gulp-load-plugins")({
 });
 var browserSync = require('browser-sync').create();
 var reload      = browserSync.reload;
+var argv = require('yargs').argv;
 
 var paths = {
     webroot: "./"
@@ -54,10 +55,10 @@ gulp.task("min:css", ["clean:css", "sass"], function () {
 });
 
 gulp.task('min:js', ['clean:js'], function () {
+    var webpackConfig = argv.ship ? require('./webpack.production.config.js'): require('./webpack.config.js');
     return gulp.src(paths.src)
-		.pipe($.webpack(require('./webpack.config.js')))
+		.pipe($.webpack(webpackConfig))
 		.pipe(gulp.dest('./'));
-
 });
 
 gulp.task("min", ["min:js", "min:css"]);

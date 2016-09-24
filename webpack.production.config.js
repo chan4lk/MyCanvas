@@ -14,7 +14,6 @@ module.exports = {
         filename: paths.bundleDest + "[name].bundle.js",
         sourceMapFilename: paths.bundleDest + "[name].js.map",
     },
-    devtool: "source-map",
     resolve: {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.jsx']
     },
@@ -31,13 +30,20 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('development')                
+                'NODE_ENV': JSON.stringify('production')                
             }
-        }),       
+        }),
         new webpack.optimize.CommonsChunkPlugin(
             /* chunkName= */"vendor",
              /* filename= */paths.bundleDest + "[name].bundle.js"
-        )
+        ),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            mangle : true,
+            comments: false
+        })
     ],
     externals: {
         "react": "React",
