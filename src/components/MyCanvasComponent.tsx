@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
-import Container from './Container';
-import { TextElement } from './TextElement';
-import PositionUtils from './PositionUtils';
+import { Container } from '../entities/Container';
+import { TextElement } from '../entities/TextElement';
+import PositionUtils from '../utils/PositionUtils';
 
 export interface ICanvasElements {
     background: string;
@@ -20,7 +20,7 @@ export interface ICanvasProps {
     elements: ICanvasElements;
 }
 
-export class MyCanvas extends React.Component<ICanvasProps, {}> implements ICanvas {
+export class MyCanvasComponent extends React.Component<ICanvasProps, {}> implements ICanvas {
     defaultWidth = 100;
     defaultHeight = 200;
 

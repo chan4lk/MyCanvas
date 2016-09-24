@@ -1,31 +1,31 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export interface ITextComponentProps{
-    value:string | number;
-    label:string;
-    description:string;
-    type:string;
-    onUpdate?:(newValue:string|number) => void;
+export interface ITextComponentProps {
+    value: string | number;
+    label: string;
+    description: string;
+    type: string;
+    onUpdate?: (newValue: string | number) => void;
 }
 
-export interface ITextComponentStates{
-    value:string | number;
+export interface ITextComponentStates {
+    value: string | number;
 }
 
 export class TextComponent extends React.Component<ITextComponentProps, ITextComponentStates>{
-    constructor(props:ITextComponentProps){
+    constructor(props: ITextComponentProps) {
         super(props);
         this.state = {
             value: props.value
         }
     }
 
-    onKeyUp  = (event:KeyboardEvent) => {
+    onKeyUp = (event: KeyboardEvent) => {
         this.state.value = (event.target as HTMLInputElement).value;
-        this.setState(this.state);  
+        this.setState(this.state);
 
-        if(this.props.onUpdate){
+        if (this.props.onUpdate) {
             this.props.onUpdate(this.state.value);
         }
     }

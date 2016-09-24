@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { FormContent } from './FormContent';
-import { IUpdates } from './IUpdates';
-import { DialogResult } from './DialogResult';
+import { IUpdates } from '../entities/IUpdates';
+import { DialogResult } from '../enums/DialogResult';
 
 export interface IDialogComponetProps {
     heading: string;

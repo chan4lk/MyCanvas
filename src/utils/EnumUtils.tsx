@@ -4,11 +4,11 @@ export default class EnumEx {
     }
 
     static getNames(e: any) {
-        return this.getObjValues(e).filter(v => typeof v === "string") as string[];
+        return this.getObjValues(e).filter(v => typeof v === 'string') as string[];
     }
 
     static getValues(e: any) {
-        return this.getObjValues(e).filter(v => typeof v === "number") as number[];
+        return this.getObjValues(e).filter(v => typeof v === 'number') as number[];
     }
 
     private static getObjValues(e: any): (number | string)[] {

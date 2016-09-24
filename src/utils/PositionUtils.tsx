@@ -1,5 +1,5 @@
-﻿import { Position } from './Position';
-import Container from './Container';
+﻿import { Position } from '../enums/Position';
+import { Container } from '../entities/Container';
 
 export default class PositionUtils {
 

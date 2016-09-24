@@ -1,18 +1,17 @@
-﻿
-/**
+﻿/**
  * Container for the canvas.
  * 
  * @export
  * @class Container
  */
-export default class Container {
+export class Container {
     private width: number;
     private height: number;
 
     public set Width(width: number) {
         if (window.innerWidth >= width) {
             this.width = width;
-        }else{
+        } else {
             this.width = window.innerWidth;
         }
     }
@@ -20,7 +19,7 @@ export default class Container {
     public set Height(height: number) {
         if (window.innerHeight >= height) {
             this.height = height;
-        }else{
+        } else {
             this.height = window.innerHeight;
         }
     }

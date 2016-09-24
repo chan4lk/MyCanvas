@@ -1,5 +1,5 @@
 import { TextElement } from './TextElement';
-import { Position } from './Position';
+import { Position } from '../enums/Position';
 
 /**
  * The Button Element.

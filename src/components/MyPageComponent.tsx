@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { MyCanvas, ICanvasElements } from './MyCanvas';
+import { MyCanvasComponent, ICanvasElements } from './MyCanvasComponent';
 import { ButtonComponent } from './ButtonComponent';
-import { DialogComponent } from './Dialog';
-import { TextElement } from './TextElement';
-import { Position } from './Position';
-import { IUpdates } from './IUpdates';
-import { DialogResult } from './DialogResult';
-import { Constants } from './Constants';
+import { DialogComponent } from './DialogComponent';
+import { TextElement } from '../entities/TextElement';
+import { Position } from '../enums/Position';
+import { IUpdates } from '../entities/IUpdates';
+import { DialogResult } from '../enums/DialogResult';
+import { Constants } from '../store/Constants';
 
 export interface IMyPageProps {
     background: string;
@@ -231,7 +231,7 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
                     </div>
                 </div>
                 <div className='ms-Grid-row' id='drawing-container'>
-                    <MyCanvas width={100} height={100} elements={this.state.elements} />
+                    <MyCanvasComponent width={100} height={100} elements={this.state.elements} />
                 </div>
                 <div className={ this.state.headerClass}>
                     <DialogComponent
