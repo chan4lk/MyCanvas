@@ -105,12 +105,12 @@ export class MyCanvasComponent extends React.Component<ICanvasProps, {}> impleme
         let x = PositionUtils.getX(text.position, this.container);
         let y = PositionUtils.getY(text.position, this.container);
         let maxWidth = this.container.Width - x;
-        let lineHeight = parseInt(text.font.substr(0, 2), 10);
+        let lineHeight = parseInt(((text.font) as string).substr(0, 2), 10);
 
         x = (this.container.Width - maxWidth) / 2;
         y = y + lineHeight / 2;
 
-        this.graphics.font = text.font;
+        this.graphics.font = text.font as string;
         this.graphics.fillStyle = text.color;
         // this.context.textBaseline = 'Top';
 

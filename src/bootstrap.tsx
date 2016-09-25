@@ -2,13 +2,21 @@
 import * as ReactDOM from 'react-dom';
 import { MyPageComponent } from './components/MyPageComponent';
 import { Store, createStore } from 'redux';
-import { counter } from './store/store';
+import { dialog } from './store/store';
+import { updateHeader, updateTeaser } from './store/Actions';
+import { Position } from './enums/Position';
 
-const store = createStore(counter);
+const store = createStore(dialog);
 
 // Initialize page.
 const render = () =>
     ReactDOM.render(<MyPageComponent background='images/header_1.jpg' />,
                     document.getElementById('container'));
 render();
-store.subscribe(render);
+let unsubscribe = store.subscribe(render);
+
+store.dispatch(updateHeader({color: '#fff', font: 20, position : Position.TOP_LEFT, value : 'Header'}));
+store.dispatch(updateTeaser({color: '#fff', font: 20, position : Position.TOP_LEFT, value : 'Teaser'}));
+store.dispatch(updateTeaser({color: '#fff', font: 20, position : Position.TOP_LEFT, value : 'Button'}));
+
+unsubscribe();

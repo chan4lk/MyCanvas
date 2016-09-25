@@ -20,7 +20,7 @@ export class TextElement {
      * @type {string}
      * @memberOf TextElement
      */
-    public font: string;
+    public font: number | string;
 
     /**
      * The color of the element.
@@ -45,7 +45,7 @@ export class TextElement {
      * 
      * @memberOf TextElement
      */
-    constructor(value: string, font: string, color: string, position: Position) {
+    constructor(value: string, font: number| string, color: string, position: Position) {
         this.value = value;
         this.font = font;
         this.color = color;

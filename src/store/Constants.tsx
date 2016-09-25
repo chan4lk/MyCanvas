@@ -1,15 +1,3 @@
-export class Constants {
-
-    public static get VisibleClass(): string {
-        return 'ms-Grid-row';
-    }
-
-    public static get HiddenClass(): string {
-        return 'ms-Grid-row hide';
-    }
-
-    public static get FontName(): string {
-        return 'Arial';
-    }
-
-}
+export const VisibleClass: string = 'ms-Grid-row';
+export const HiddenClass: string = 'ms-Grid-row hide';
+export const FontName: string = 'Arial';

@@ -6,7 +6,7 @@ import { TextElement } from '../entities/TextElement';
 import { Position } from '../enums/Position';
 import { IUpdates } from '../entities/IUpdates';
 import { DialogResult } from '../enums/DialogResult';
-import { Constants } from '../store/Constants';
+import { HiddenClass, VisibleClass, FontName } from '../store/Constants';
 
 export interface IMyPageProps {
     background: string;
@@ -35,9 +35,9 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
         super(props);
 
         this.state = {
-            headerClass: Constants.HiddenClass,
-            teaserClass: Constants.HiddenClass,
-            buttonClass: Constants.HiddenClass,
+            headerClass: HiddenClass,
+            teaserClass: HiddenClass,
+            buttonClass: HiddenClass,
             elements: {
                 background: this.props.background,
                 texts: []
@@ -53,12 +53,12 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
     }
 
     addHeader = () => {
-        this.state.headerClass = Constants.VisibleClass;
+        this.state.headerClass = VisibleClass;
         this.setState(this.state);
     }
 
     hideHeaderDialog = (updates: IUpdates, result: DialogResult) => {
-        this.state.headerClass = Constants.HiddenClass;
+        this.state.headerClass = HiddenClass;
 
         if (DialogResult.OK === result) {
             this.updateElements(updates);
@@ -68,12 +68,12 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
     }
 
     addTeaser = () => {
-        this.state.teaserClass = Constants.VisibleClass;
+        this.state.teaserClass = VisibleClass;
         this.setState(this.state);
     }
 
     hideTeaserDialog = (updates: IUpdates, result: DialogResult) => {
-        this.state.teaserClass = Constants.HiddenClass;
+        this.state.teaserClass = HiddenClass;
         if (DialogResult.OK === result) {
             this.updateElements(updates);
         }
@@ -82,12 +82,12 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
     }
 
     addButton = () => {
-        this.state.buttonClass = Constants.VisibleClass;
+        this.state.buttonClass = VisibleClass;
         this.setState(this.state);
     }
 
     hideButtonDialog = (updates: IUpdates, result: DialogResult) => {
-        this.state.buttonClass = Constants.HiddenClass;
+        this.state.buttonClass = HiddenClass;
         if (DialogResult.OK === result) {
             this.updateElements(updates);
         }
@@ -111,7 +111,7 @@ export class MyPageComponent extends React.Component<IMyPageProps, IMyPageStates
 
         this.state.elements.texts.push(new TextElement(
             updates.value + this.state.elements.texts.length,
-            `${updates.fontSize}pt ${Constants.FontName}`,
+            `${updates.fontSize}pt ${FontName}`,
             updates.color,
             updates.position));
     }
